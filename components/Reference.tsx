@@ -1,5 +1,4 @@
 import React from 'react'
-import { IReference } from '../interfaces'
 import styles from './reference.module.css'
 
 export default function Reference({ value }: any) {
