@@ -1,7 +1,6 @@
 export default async (req, res) => {
-  res.status(500)
   res.json({
-    lastMutationID: 10,
+    lastMutationID: 100,
     cookie: null,
     patch: [
       {op: 'clear'},
