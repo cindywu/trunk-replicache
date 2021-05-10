@@ -34,10 +34,10 @@ export default function Home() {
     })()
   }, [])
 
-  function listen(replicache) {
+  function listen(replicache: any) {
     console.log('listening')
     Pusher.logToConsole = true
-    const pusher = new Pusher(process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_KEY, {
+    const pusher = new Pusher(process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_KEY!, {
       cluster: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_CLUSTER
     })
     const channel = pusher.subscribe('default')

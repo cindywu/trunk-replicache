@@ -1,7 +1,7 @@
 import { getDB } from '../../db'
 import Pusher from 'pusher'
 
-export default async(req, res) => {
+export default async(req: any, res: any) => {
   const push = req.body
   console.log('Processing push', JSON.stringify(push, null, ''))
 
@@ -82,7 +82,7 @@ export default async(req, res) => {
   }
 }
 
-async function createReference(db, {id, name, parent, date, description}, version) {
+async function createReference(db: any, {id, name, parent, date, description}: any, version: any) {
   await db.none(
     `INSERT INTO reference (
     id, name, parent, date, description, version) values
@@ -93,10 +93,10 @@ async function createReference(db, {id, name, parent, date, description}, versio
 
 async function sendPoke() {
   const pusher = new Pusher({
-    appId: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_APP_ID,
-    key: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_KEY,
-    secret: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_SECRET,
-    cluster: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_CLUSTER,
+    appId: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_APP_ID!,
+    key: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_KEY!,
+    secret: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_SECRET!,
+    cluster: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_CLUSTER!,
     useTLS: true,
   })
   const t0 = Date.now()

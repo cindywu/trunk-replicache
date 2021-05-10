@@ -1,6 +1,6 @@
 import { getDB } from '../../db.js';
 
-export default async (_, res) => {
+export default async (_: any, res: any) => {
   const db = await getDB()
   await db.task(async t => {
     await t.none('DROP TABLE IF EXISTS reference');
