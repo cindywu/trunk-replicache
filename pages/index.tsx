@@ -1,71 +1,64 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import North from '../components/North'
 import East from '../components/East'
 import South from '../components/South'
 import West from '../components/West'
-import { v4 as uuidv4 } from 'uuid'
 import styles from '../styles/home.module.css'
-import { IReference } from '../interfaces'
+import { Replicache } from 'replicache'
+import { v4 as uuidv4 } from 'uuid'
+
 
 export default function Home() {
-  const [references, setReferences] = useState<IReference[]>(sampleReferences)
+  const [replicache, setReplicache] = useState<any>(null)
+
+  useEffect(() => {
+    (async () => {
+      const replicache = new Replicache({
+        pushURL: '/api/replicache-push',
+        pullURL: '/api/replicache-pull',
+        wasmModule: '/replicache.dev.wasm',
+        mutators: {
+          async createReference(tx, {id, name, parent, date, description}) {
+            await tx.put(`reference/${id}`, {
+              name,
+              parent,
+              date,
+              description
+            })
+          }
+        }
+      })
+      const d = await replicache
+      setReplicache(d)
+    })()
+  }, [])
 
   function handleReferenceAdd() {
-    console.log('handleReferenceAdd')
+    replicache.mutate.createReference({
+      id: uuidv4(),
+      name: 'new',
+      parent: 'new parent',
+      date: 'May 9',
+      description: 'hello i am mac'
+    })
   }
 
   return (
-    <>
-      <div className={styles.container}>
-        <West />
-        <div className={styles.center}>
-          <North 
-            handleReferenceAdd={handleReferenceAdd}
-          />
-          <South 
-            references={sampleReferences}
-          />
+      <>
+        <div className={styles.container}>
+          <West />
+          <div className={styles.center}>
+            <North 
+              handleReferenceAdd={handleReferenceAdd}
+            />
+            {replicache &&
+              <South 
+                replicache={replicache}
+              />
+            } 
+          </div>
+          <East />
         </div>
-        <East />
-      </div>
-    </>
+      </>
   )
 }
-
-const sampleReferences = [
-  {
-    id: uuidv4(),
-    name: 'Clery 2013',
-    parent: 'Wurzel 202X',
-    date: 'Apr 10',
-    description: 'someone said i should read this',
-  },
-  {
-    id: uuidv4(),
-    name: 'Bromberg 1982',
-    parent: 'Wurzel 202X',
-    date: 'Apr 10',
-    description: 'someone said i should read this',
-  },
-  {
-    id: uuidv4(),
-    name: 'Wurden 2016',
-    parent: 'Wurzel 202X',
-    date: 'Apr 10',
-    description: 'someone said i should read this',
-  },
-  {
-    id: uuidv4(),
-    name: 'Kirpatrick 1995',
-    parent: 'Wurzel 202X',
-    date: 'Apr 10',
-    description: 'someone said i should read this',
-  },
-  {
-    id: uuidv4(),
-    name: 'Harchol et al. 2020',
-    parent: '',
-    date: 'Apr 10',
-    description: 'A public option for the core',
-  }
-]

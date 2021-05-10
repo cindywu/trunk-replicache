@@ -2,18 +2,18 @@ import React from 'react'
 import { IReference } from '../interfaces'
 import styles from './reference.module.css'
 
-export default function Reference({ name, parent, date, description }: IReference) {
+export default function Reference({ value }: any) {
   return (
     <div className={styles.container}>
       <div>
-        <span>{name}</span>
+        <span>{value.name}</span>
         <span>{` › `}</span>
-        <span>{parent}</span>
+        <span>{value.parent}</span>
         <span>{`  `}</span>
-        <span>{description}</span>
+        <span>{value.description}</span>
       </div>
       <div>
-        <span>{date}</span>
+        <span>{value.date}</span>
       </div>
       
     </div>

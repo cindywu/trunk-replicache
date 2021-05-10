@@ -1,17 +1,28 @@
 import React from 'react'
 import Reference from './Reference'
-import { IReference } from '../interfaces'
+import { useSubscribe } from 'replicache-react-util'
 
 type Props = {
-  references: IReference[]
+  replicache: any
 }
 
-export default function ReferenceList({ references } : Props) {
+export default function ReferenceList({ replicache } : Props) {
+  console.log('replicache', replicache)
+  const references = useSubscribe(
+    replicache,
+    async tx => {
+      const list = await tx.scan({prefix: 'reference/'}).entries().toArray()
+      console.log('list', list)
+      return list
+    },[])
+  
   return (
     <div>
-      {references.map((reference : any) => {
-        return <Reference key={reference.id} {...reference} />
-      } )}
+      {references.map(([k, v]) => {
+        return (
+          <Reference key={k} value={v} />
+        )
+      })}
     </div>
     
   )

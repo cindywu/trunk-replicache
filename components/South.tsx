@@ -1,17 +1,16 @@
 import React from 'react'
 import ReferenceList from './ReferenceList'
-import { IReference } from '../interfaces'
 import styles from './south.module.css'
 
 type Props = {
-  references: IReference[]
+  replicache: any
 } 
 
-export default function South({ references }: Props) {
+export default function South({ replicache }: Props) {
   return (
     <div className={styles.container}>
        <ReferenceList 
-        references={references}
+        replicache={replicache}
       />
     </div>
   )
