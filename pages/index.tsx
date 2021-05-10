@@ -6,7 +6,7 @@ import West from '../components/West'
 import styles from '../styles/home.module.css'
 import { Replicache } from 'replicache'
 import { v4 as uuidv4 } from 'uuid'
-
+import Pusher from 'pusher-js'
 
 export default function Home() {
   const [replicache, setReplicache] = useState<any>(null)
@@ -29,9 +29,23 @@ export default function Home() {
         }
       })
       const d = await replicache
+      listen(replicache)
       setReplicache(d)
     })()
   }, [])
+
+  function listen(replicache) {
+    console.log('listening')
+    Pusher.logToConsole = true
+    const pusher = new Pusher(process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_KEY, {
+      cluster: process.env.NEXT_PUBLIC_REPLICHAT_PUSHER_CLUSTER
+    })
+    const channel = pusher.subscribe('default')
+    channel.bind('poke', () => {
+      console.log('got poked')
+      replicache.pull()
+    })
+  }
 
   function handleReferenceAdd() {
     replicache.mutate.createReference({

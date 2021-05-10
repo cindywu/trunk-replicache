@@ -8,7 +8,7 @@ export default async (_, res) => {
     await t.none('DROP SEQUENCE IF EXISTS version');
     // Stores trunk references
     await t.none(`CREATE TABLE reference (
-      id VARCHAR(20) PRIMARY KEY NOT NULL,
+      id VARCHAR(255) PRIMARY KEY NOT NULL,
       name TEXT NOT NULL,
       parent TEXT NOT NULL,
       date TEXT NOT NULL,
