@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Reference from './Reference'
-import { useSubscribe } from 'replicache-react-util'
+import { useSubscribe } from '../utils/useSubscribe'
 import { ReferenceContext } from '../pages/_app'
 
 export default function ReferenceList() {

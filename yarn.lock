@@ -1587,7 +1587,7 @@ react-refresh@0.8.3:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
 
-react@17.0.1, "react@>=16.0 <18.0":
+react@17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
   integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
@@ -1629,15 +1629,7 @@ regenerator-runtime@^0.13.4:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
   integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
 
-replicache-react-util@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/replicache-react-util/-/replicache-react-util-2.2.0.tgz#64431adfdb70b00790a16bf1ee556f71a6f4790b"
-  integrity sha512-LLRFm+sj6XjIQawmAtiQjSFkIfEak6dle0jf4F4b/XgNxL/5Tf/R4f7uga8Vkcyb89CscLA6gK/M2bQPM11z0g==
-  dependencies:
-    react ">=16.0 <18.0"
-    replicache ">=6.0.1 <7.0"
-
-"replicache@>=6.0.1 <7.0", replicache@^6.2.0:
+replicache@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/replicache/-/replicache-6.2.0.tgz#9d7ca31aa789049ee977383c4be90da3f8b6ed3d"
   integrity sha512-N0qdhHm7u784e5Ot5tH0tM/LAKONpLmGJ6n+xhwvVx67ACFPhFwZ4zUtFYt9wpUcBE0LsFIx3IuLszc5OPJcPg==
