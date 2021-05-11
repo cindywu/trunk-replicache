@@ -1,13 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Reference from './Reference'
 import { useSubscribe } from 'replicache-react-util'
+import { ReferenceContext } from '../pages/_app'
 
-type Props = {
-  replicache: any
-}
+export default function ReferenceList() {
+  const { replicache } = useContext(ReferenceContext)
 
-export default function ReferenceList({ replicache } : Props) {
-  console.log('replicache', replicache)
   const references = useSubscribe(
     replicache,
     async tx => {

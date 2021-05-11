@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './nav-north.module.css'
+import ReferenceAdd from './ReferenceAdd'
+import { ReferenceContext } from '../pages/_app'
 
-type Props = {
-  handleReferenceAdd: () => void
-}
-
-export default function NavNorth({ handleReferenceAdd }: Props) {
-  function handleClick() {
-    console.log('handleClick')
-    handleReferenceAdd()
+export default function NavNorth() {
+  const { showReferenceAdd, handleShowReferenceAdd } = useContext(ReferenceContext)
+  
+  function handleAddReference() {
+    handleShowReferenceAdd() 
   }
 
   return (
-    <div className={styles.container}>
-    <button 
-      className="btn btn--add-reference" 
-      onClick={() => handleClick()}
-    >+</button>
-  </div>
+    <>
+      {showReferenceAdd &&
+        <ReferenceAdd />
+      }
+      <div className={styles.container}>
+        <button 
+          className="btn btn--add-reference" 
+          onClick={() => handleAddReference()}
+        >+</button>
+      </div>
+    </>
   )
 }
