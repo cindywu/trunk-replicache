@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './east.module.css'
+import styles from './nav-west.module.css'
 
-export default function East() {
+export default function NavWest() {
   return (
     <div className={styles.container}>
       

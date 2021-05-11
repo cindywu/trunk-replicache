@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import North from '../components/North'
-import East from '../components/East'
-import South from '../components/South'
-import West from '../components/West'
+import NavNorth from '../components/NavNorth'
+import NavEast from '../components/NavEast'
+import NavSouth from '../components/NavSouth'
+import NavWest from '../components/NavWest'
 import styles from '../styles/home.module.css'
 import { Replicache } from 'replicache'
 import { v4 as uuidv4 } from 'uuid'
@@ -60,18 +60,18 @@ export default function Home() {
   return (
       <>
         <div className={styles.container}>
-          <West />
+          <NavWest />
           <div className={styles.center}>
-            <North 
+            <NavNorth 
               handleReferenceAdd={handleReferenceAdd}
             />
             {replicache &&
-              <South 
+              <NavSouth 
                 replicache={replicache}
               />
             } 
           </div>
-          <East />
+          <NavEast />
         </div>
       </>
   )

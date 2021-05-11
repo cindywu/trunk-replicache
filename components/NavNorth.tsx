@@ -1,11 +1,11 @@
 import React from 'react'
-import styles from './north.module.css'
+import styles from './nav-north.module.css'
 
 type Props = {
   handleReferenceAdd: () => void
 }
 
-export default function North({ handleReferenceAdd }: Props) {
+export default function NavNorth({ handleReferenceAdd }: Props) {
   function handleClick() {
     console.log('handleClick')
     handleReferenceAdd()
