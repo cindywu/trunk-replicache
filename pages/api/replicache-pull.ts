@@ -24,7 +24,7 @@ export default async (req: any, res: any) => {
         await db.one('SELECT MAX(version) as version FROM reference')
       ).version
       console.log({cookie, lastMutationID, changed})
-      
+
       res.json({
         lastMutationID,
         cookie,
@@ -46,7 +46,7 @@ export default async (req: any, res: any) => {
     res.status(500).send(e.toString())
   }
 }
-  
+
 //   res.json({
 //     lastMutationID: 0,
 //     cookie: null,

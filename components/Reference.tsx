@@ -14,7 +14,7 @@ export default function Reference({ value }: any) {
       <div>
         <span>{value.date}</span>
       </div>
-      
+
     </div>
   )
 }

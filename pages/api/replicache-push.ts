@@ -30,7 +30,7 @@ export default async(req: any, res: any) => {
 
       for (let i = 0; i < push.mutations.length; i++) {
         const t1 = Date.now()
-        
+
         const mutation = push.mutations[i]
         const expectedMutationID = lastMutationID + 1
 
@@ -44,7 +44,7 @@ export default async(req: any, res: any) => {
         if (mutation.id > expectedMutationID){
           console.warn(`Mutation ${mutation.id} is from the future - aborting`)
           break
-        } 
+        }
 
         console.log('Processing mutation:', JSON.stringify(mutation, null, ''))
 
@@ -102,5 +102,5 @@ async function sendPoke() {
   const t0 = Date.now()
   await pusher.trigger('default', 'poke', {})
   console.log('Sent poke in', Date.now() - t0)
-  
+
 }

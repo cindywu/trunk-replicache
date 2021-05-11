@@ -5,9 +5,9 @@ import { ReferenceContext } from '../pages/_app'
 
 export default function NavNorth() {
   const { showReferenceAdd, handleShowReferenceAdd } = useContext(ReferenceContext)
-  
+
   function handleAddReference() {
-    handleShowReferenceAdd() 
+    handleShowReferenceAdd()
   }
 
   return (
@@ -16,8 +16,8 @@ export default function NavNorth() {
         <ReferenceAdd />
       }
       <div className={styles.container}>
-        <button 
-          className="btn btn--add-reference" 
+        <button
+          className="btn btn--add-reference"
           onClick={() => handleAddReference()}
         >+</button>
       </div>

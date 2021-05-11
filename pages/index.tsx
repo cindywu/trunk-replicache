@@ -8,7 +8,7 @@ import { ReferenceContext } from './_app'
 
 export default function Home() {
   const { replicache } = useContext(ReferenceContext)
-  
+
   return (
       <>
         <div className={styles.container}>
@@ -16,9 +16,9 @@ export default function Home() {
           <div className={styles.center}>
             <NavNorth />
             {replicache &&
-              <NavSouth 
+              <NavSouth
               />
-            } 
+            }
           </div>
           <NavEast />
         </div>

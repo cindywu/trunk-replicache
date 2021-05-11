@@ -13,7 +13,7 @@ export default function ReferenceList() {
       console.log('list', list)
       return list
     },[])
-  
+
   return (
     <div>
       {references.map(([k, v]) => {
@@ -22,6 +22,6 @@ export default function ReferenceList() {
         )
       })}
     </div>
-    
+
   )
 }
