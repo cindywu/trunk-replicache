@@ -18,10 +18,9 @@ export default function ReferenceList() {
     <div>
       {references.map(([k, v]) => {
         return (
-          <Reference key={k} value={v} />
+          <Reference key={k} value={v} k={k}/>
         )
       })}
     </div>
-
   )
 }
