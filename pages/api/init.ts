@@ -13,6 +13,7 @@ export default async (_: any, res: any) => {
       parent TEXT NOT NULL,
       date TEXT NOT NULL,
       description TEXT NOT NULL,
+      archived BOOLEAN NOT NULL,
       version BIGINT NOT NULL)`)
     // Stores last mutation ID for each Replicache client
     await t.none(`CREATE TABLE replicache_client (

@@ -82,12 +82,12 @@ export default async(req: any, res: any) => {
   }
 }
 
-async function createReference(db: any, {id, name, parent, date, description}: any, version: any) {
+async function createReference(db: any, {id, name, parent, date, archived, description}: any, version: any) {
   await db.none(
     `INSERT INTO reference (
-    id, name, parent, date, description, version) values
-    ($1, $2, $3, $4, $5, $6)`,
-    [id, name, parent, date, description, version]
+    id, name, parent, date, description, archived, version) values
+    ($1, $2, $3, $4, $5, $6, $7)`,
+    [id, name, parent, date, description, archived, version]
   )
 }
 

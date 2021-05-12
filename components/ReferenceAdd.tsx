@@ -17,6 +17,7 @@ export default function ReferenceAdd() {
       parent: parentRef.current ? parentRef.current.value : '',
       date: 'May 10',
       description: titleRef.current ? titleRef.current.value : '',
+      archived: false
     }
     handleReferenceAdd(newReference)
   }

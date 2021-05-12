@@ -47,12 +47,13 @@ export default function _App({ Component }: Props) {
         pullURL: '/api/replicache-pull',
         wasmModule: '/replicache.dev.wasm',
         mutators: {
-          async createReference(tx, {id, name, parent, date, description}) {
+          async createReference(tx, {id, name, parent, date, description, archived}) {
             await tx.put(`reference/${id}`, {
               name,
               parent,
               date,
-              description
+              description,
+              archived
             })
           }
         }
@@ -84,7 +85,8 @@ export default function _App({ Component }: Props) {
       name: newReference.name,
       parent: newReference.parent,
       date: newReference.date,
-      description: newReference.description
+      description: newReference.description,
+      archived: newReference.archived
     })
     setShowReferenceAdd(!showReferenceAdd)
   }
