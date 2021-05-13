@@ -52,6 +52,9 @@ export default async(req: any, res: any) => {
           case 'createReference':
             await createReference(db, mutation.args, version)
             break
+          case 'deleteReference':
+            await deleteReference(db, mutation.args)
+            break
           default:
             throw new Error(`Unknown mutation: ${mutation.name}`)
         }
@@ -88,6 +91,17 @@ async function createReference(db: any, {id, name, parent, date, description}: a
     id, name, parent, date, description, version) values
     ($1, $2, $3, $4, $5, $6)`,
     [id, name, parent, date, description, version]
+  )
+}
+
+async function deleteReference(db: any, key: string) {
+  console.log('key', key)
+  const id = key.toString().replace("reference/", "")
+  console.log('id', id)
+  await db.none(
+    `DELETE FROM reference
+    WHERE id = $1`,
+    [id]
   )
 }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import '../styles/global.css'
-import { Replicache } from 'replicache'
+import { Replicache, WriteTransaction } from 'replicache'
 import { v4 as uuidv4 } from 'uuid'
 import Pusher from 'pusher-js'
 
@@ -13,14 +13,15 @@ type ReferenceContextType = {
   showReferenceAdd: boolean
   handleReferenceAdd: (newReference: any) => void
   handleShowReferenceAdd: () => void
-
+  handleReferenceDelete: (id: string) => void
 }
 
 const defaultContextValue = {
   replicache: null,
   showReferenceAdd: false,
   handleReferenceAdd: (newReference: any) => {},
-  handleShowReferenceAdd: () => {}
+  handleShowReferenceAdd: () => {},
+  handleReferenceDelete: (id: string) => {},
 }
 
 export const ReferenceContext = React.createContext<ReferenceContextType>(defaultContextValue)
@@ -34,6 +35,7 @@ export default function _App({ Component }: Props) {
     showReferenceAdd,
     handleReferenceAdd,
     handleShowReferenceAdd,
+    handleReferenceDelete,
   }
 
   function handleShowReferenceAdd() {
@@ -46,14 +48,18 @@ export default function _App({ Component }: Props) {
         pushURL: '/api/replicache-push',
         pullURL: '/api/replicache-pull',
         wasmModule: '/replicache.dev.wasm',
+        logLevel: 'debug',
         mutators: {
-          async createReference(tx, {id, name, parent, date, description}) {
+          async createReference(tx: WriteTransaction, {id, name, parent, date, description}) {
             await tx.put(`reference/${id}`, {
               name,
               parent,
               date,
               description
             })
+          },
+          async deleteReference(tx: WriteTransaction, key: string) {
+            await tx.del(key)
           }
         }
       })
@@ -87,6 +93,11 @@ export default function _App({ Component }: Props) {
       description: newReference.description
     })
     setShowReferenceAdd(!showReferenceAdd)
+  }
+
+  function handleReferenceDelete(key: string) {
+    console.log('i am in handleReferenceDelete')
+    replicache.mutate.deleteReference(key)
   }
 
   return (
