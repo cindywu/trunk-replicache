@@ -17,7 +17,7 @@ export default async (req: any, res: any) => {
         )?.last_mutation_id ?? '0'
       )
       const changed = await db.manyOrNone(
-        'SELECT id, name, parent, date, description FROM reference WHERE version > $1',
+        'SELECT id, name, parent, date, description, archived FROM reference WHERE version > $1',
         parseInt(pull.cookie ?? 0)
       )
       const cookie = (
@@ -35,7 +35,8 @@ export default async (req: any, res: any) => {
             name: row.name,
             parent: row.parent,
             date: row.date,
-            description: row.description
+            description: row.description,
+            archived: row.archived
           }
         }))
       })
